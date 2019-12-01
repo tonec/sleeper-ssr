@@ -1,0 +1,26 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const App = () => {
+  return (
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/users">About</Link>
+        </li>
+      </ul>
+      <h1>App u like</h1>
+      <button
+        type="button"
+        onClick={() => console.log('clicked')}
+      >
+        Click me
+      </button>
+    </div>
+  )
+}
+
+export default App
