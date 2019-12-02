@@ -1,4 +1,5 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, '..'),
@@ -45,5 +46,9 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
 }

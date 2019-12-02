@@ -2,8 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./dev.base.config.js')
-
-const ROOT_DIRECTORY = path.resolve(__dirname, '..')
+const paths = require('./paths')
 
 module.exports = merge(baseConfig, {
   target: 'node',
@@ -11,7 +10,25 @@ module.exports = merge(baseConfig, {
   entry: './src/server.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(ROOT_DIRECTORY, 'build')
+    path: path.resolve(paths.ROOT_DIRECTORY, 'build')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: '[name]-[hash].[ext]',
+              useRelativePath: false,
+              publicPath: paths.PUBLIC_PATH
+            },
+          },
+        ],
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
