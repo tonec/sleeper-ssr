@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
 import get from 'lodash/get'
+import getAssets from './getAssets'
 import routes from '../routes'
-import assetsJSON from '../../assets'
 
 export default (req, store) => {
   const content = renderToString(
@@ -17,7 +17,9 @@ export default (req, store) => {
     </Provider>
   )
 
-  const bundle = get(assetsJSON, 'main.js')
+  console.log('assets', getAssets())
+
+  const bundle = get(getAssets(), 'main.js')
 
   if (!bundle) {
     console.log('No bundle file found.')

@@ -6,6 +6,9 @@ const paths = require('./paths')
 
 module.exports = merge(baseConfig, {
   target: 'node',
+  node: {
+    __dirname: false,
+  },
   mode: 'none',
   entry: './src/server.js',
   output: {
