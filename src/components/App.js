@@ -14,7 +14,7 @@ const App = () => {
           <Link to="/users">About</Link>
         </li>
       </ul>
-      <h1>App u like</h1>
+      <h1>App u likedsdsdsdsd</h1>
       <button
         type="button"
         onClick={() => console.log('clicked')}

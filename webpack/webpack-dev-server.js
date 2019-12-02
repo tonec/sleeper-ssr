@@ -1,32 +1,25 @@
-const Express = require('express')
 const webpack = require('webpack')
-const config = require('../config')
-const webpackConfig = require('./dev.config')
+const express = require('express')
+const devMiddleware = require('webpack-dev-middleware')
+const hotMiddleware = require('webpack-hot-middleware')
+const webpackConfig = require('./dev.client.config')
 
 const compiler = webpack(webpackConfig)
-const host = config.host || 'localhost'
-const port = (Number(config.port) + 1) || 3001
 
-const serverOptions = {
-  contentBase: `http://${host}:${port}`,
+const app = express()
+
+app.use(devMiddleware(compiler, {
+  contentBase: 'http://localhost:3000',
   quiet: true,
   noInfo: true,
   hot: true,
   inline: true,
   lazy: false,
   publicPath: webpackConfig.output.publicPath,
-  headers: { 'Access-Control-Allow-Origin': '*' }
-}
+  headers: { 'Access-Control-Allow-Origin': '*' },
+  writeToDisk: true
+}))
 
-const app = new Express()
+app.use(hotMiddleware(compiler))
 
-app.use(require('webpack-dev-middleware')(compiler, serverOptions))
-app.use(require('webpack-hot-middleware')(compiler))
-
-app.listen(port, err => {
-  if (err) {
-    console.error(err)
-  } else {
-    console.info('==> 🚧  Webpack development server listening on port %s', port)
-  }
-})
+app.listen(3001, () => console.log('Example app listening on port 3001!'))

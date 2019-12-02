@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 class Sub extends Component {
   render() {
     return (
-      <p>Sub</p>
+      <p>Sub sdsdsdsd</p>
     )
   }
 }

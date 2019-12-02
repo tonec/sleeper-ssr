@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import { AppContainer } from 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { matchRoutes, renderRoutes } from 'react-router-config'
@@ -29,10 +30,12 @@ history.listen(location => {
 })
 
 ReactDOM.hydrate(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      {renderRoutes(routes)}
-    </ConnectedRouter>
-  </Provider>,
+  <AppContainer>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        {renderRoutes(routes)}
+      </ConnectedRouter>
+    </Provider>
+  </AppContainer>,
   document.getElementById('content')
 )

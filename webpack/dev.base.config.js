@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
@@ -8,7 +9,8 @@ module.exports = {
       'src',
       'node_modules'
     ],
-    extensions: ['.json', '.js']
+    extensions: ['.json', '.js'],
+    alias: { 'react-dom': '@hot-loader/react-dom' }
   },
   devtool: 'inline-source-map',
   stats: {
@@ -41,7 +43,8 @@ module.exports = {
             ['@babel/env', { targets: { browsers: ['last 2 versions'] } }]
           ],
           plugins: [
-            '@babel/plugin-proposal-class-properties'
+            'react-hot-loader/babel',
+            '@babel/plugin-proposal-class-properties',
           ]
         }
       }
@@ -49,6 +52,7 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
