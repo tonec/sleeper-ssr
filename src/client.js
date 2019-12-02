@@ -1,5 +1,4 @@
 import 'babel-polyfill'
-import { AppContainer } from 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { matchRoutes, renderRoutes } from 'react-router-config'
@@ -15,27 +14,33 @@ import routes from './routes'
 const history = qhistory(createBrowserHistory(), stringify, parse)
 const store = createStore(history)
 
-history.listen(location => {
-  const branch = matchRoutes(routes, location.pathname)
-  const components = branch.map(b => b.route.component)
-  const locals = { store }
+const hydrate = () => {
+  history.listen(location => {
+    const branch = matchRoutes(routes, location.pathname)
+    const components = branch.map(b => b.route.component)
+    const locals = { store }
 
-  if (window.INITIAL_STATE) {
-    delete window.INITIAL_STATE
-  } else {
-    trigger('fetch', components, locals)
-  }
+    if (window.INITIAL_STATE) {
+      delete window.INITIAL_STATE
+    } else {
+      trigger('fetch', components, locals)
+    }
 
-  trigger('defer', components, locals)
-})
+    trigger('defer', components, locals)
+  })
 
-ReactDOM.hydrate(
-  <AppContainer>
+  ReactDOM.hydrate(
     <Provider store={store}>
       <ConnectedRouter history={history}>
         {renderRoutes(routes)}
       </ConnectedRouter>
-    </Provider>
-  </AppContainer>,
-  document.getElementById('content')
-)
+    </Provider>,
+    document.getElementById('content')
+  )
+}
+
+hydrate()
+
+module.hot.accept('./routes', () => {
+  hydrate()
+})

@@ -9,6 +9,7 @@ module.exports = merge(baseConfig, {
   mode: 'none',
   entry: {
     main: [
+      'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
       path.resolve(paths.ROOT_DIRECTORY, 'src/client.js')
     ]
