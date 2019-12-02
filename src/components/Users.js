@@ -4,7 +4,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { provideHooks } from 'redial'
-import { fetchUsers } from 'redux/modules/user/actions'
+import { fetchUsers } from '../redux/modules/user/actions'
 import Sub from './Sub'
 
 class Users extends Component {

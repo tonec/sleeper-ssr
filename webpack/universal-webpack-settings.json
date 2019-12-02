@@ -1,0 +1,10 @@
+{
+  "server": {
+    "input": "./src/server.js",
+    "output": "./build/bundle.js"
+  },
+  "client": {
+    "input": "./src/client.js",
+    "output": "./public/dist/main.js"
+  }
+}

@@ -1,5 +1,5 @@
-import App from 'components/App'
-import Users from 'components/Users'
+import App from './components/App'
+import Users from './components/Users'
 
 export default [
   { path: '/', exact: true, component: App },

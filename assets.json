@@ -1,5 +1,8 @@
 {
   "main": {
-    "js": "main-bb68c41792597832b573.js"
+    "js": "main-4372d3e405b001debf65.js"
+  },
+  "bundle": {
+    "js": "bundle.js"
   }
 }

@@ -8,7 +8,7 @@ import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import { trigger } from 'redial'
-import createStore from 'redux/store'
+import createStore from './redux/store'
 import routes from './routes'
 
 const history = qhistory(createBrowserHistory(), stringify, parse)
