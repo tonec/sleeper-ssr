@@ -17,8 +17,6 @@ export default (req, store) => {
     </Provider>
   )
 
-  console.log('assets', getAssets())
-
   const bundle = get(getAssets(), 'main.js')
 
   if (!bundle) {
