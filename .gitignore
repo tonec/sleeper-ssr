@@ -3,6 +3,6 @@ node_modules/
 package-lock.json
 npm-debug.log
 build/
-public/build/
+public/dist/
 *.report.html
 coverage/
