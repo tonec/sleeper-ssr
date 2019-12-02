@@ -23,7 +23,8 @@ module.exports = merge(baseConfig, {
               limit: 8192,
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
-              publicPath: paths.PUBLIC_PATH
+              publicPath: paths.PUBLIC_PATH,
+              emitFile: false
             },
           },
         ],
