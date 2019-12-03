@@ -6,7 +6,6 @@ const baseConfig = require('./dev.base.config')
 const paths = require('./paths')
 
 module.exports = merge(baseConfig, {
-  mode: 'none',
   entry: {
     main: [
       'react-hot-loader/patch',

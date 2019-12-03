@@ -7,7 +7,11 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:build-client": "node webpack/webpack-dev-server.js",
     "dev:build-server": "webpack --config webpack/dev.server.config.js --watch",
-    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\""
+    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
+    "prod": "npm-run-all --parallel prod:*",
+    "prod:build-client": "webpack --config webpack/prod.client.config.js --optimize-minimize --mode production",
+    "prod:build-server": "webpack --config webpack/prod.server.config.js --optimize-minimize --mode production",
+    "prod:server": "node build/bundle.js"
   },
   "author": "",
   "license": "ISC",
@@ -53,6 +57,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "file-loader": "^5.0.2",
     "react-hot-loader": "^4.12.18",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
