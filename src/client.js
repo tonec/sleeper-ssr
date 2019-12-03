@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { matchRoutes, renderRoutes } from 'react-router-config'
+import { loadableReady } from '@loadable/component'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { createBrowserHistory } from 'history'
@@ -39,7 +40,9 @@ const hydrate = () => {
   )
 }
 
-hydrate()
+loadableReady(() => {
+  hydrate()
+})
 
 module.hot.accept('./routes', () => {
   hydrate()

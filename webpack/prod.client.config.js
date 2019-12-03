@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const AssetsPlugin = require('assets-webpack-plugin')
 const baseConfig = require('./dev.base.config')
 const paths = require('./paths')
 
@@ -38,8 +37,6 @@ module.exports = merge(baseConfig, {
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false
-    }),
-
-    new AssetsPlugin({ filename: 'assets.json' })
+    })
   ]
 })

@@ -1,14 +1,13 @@
-import fs from 'fs'
 import path from 'path'
+import { ChunkExtractor } from '@loadable/server'
 
 export default () => {
-  const assetsPath = path.resolve(__dirname, '../assets.json')
+  const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
+  const extractor = new ChunkExtractor({ statsFile })
 
-  if (!fs.existsSync(assetsPath)) {
-    return null
+  return {
+    scripts: extractor.getScriptTags(),
+    styles: extractor.getStyleTags(),
+    links: extractor.getLinkTags()
   }
-
-  const assetsJSON = fs.readFileSync(assetsPath)
-
-  return JSON.parse(assetsJSON)
 }

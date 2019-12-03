@@ -6,4 +6,4 @@ build/
 public/dist/
 *.report.html
 coverage/
-assets.json
+webpack-assets.json

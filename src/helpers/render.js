@@ -3,17 +3,16 @@ import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
-import get from 'lodash/get'
 import Html from './Html'
 import getAssets from './getAssets'
 import routes from '../routes'
 import config from '../../config'
 
 export default (req, store) => {
-  const bundle = get(getAssets(), 'main.js', null)
+  const assets = getAssets()
 
-  if (!bundle) {
-    console.log('No bundle file found.')
+  if (!assets) {
+    console.log('No assets files found.')
   }
 
   const content = renderToString(
@@ -24,5 +23,5 @@ export default (req, store) => {
     </Provider>
   )
 
-  return Html(content, bundle, store, config)
+  return Html(content, assets, store, config)
 }
