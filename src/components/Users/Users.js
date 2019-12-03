@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { provideHooks } from 'redial'
 import { fetchUsers } from 'redux/modules/user/actions'
-import Sub from './Sub'
 
 class Users extends Component {
   static propTypes = {
@@ -37,7 +36,6 @@ class Users extends Component {
         </ul>
         <h1>Users list:</h1>
         <ul>{this.renderUsers()}</ul>
-        <Sub />
       </div>
     )
   }

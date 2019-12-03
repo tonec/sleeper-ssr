@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { objectOf, any } from 'prop-types'
 import { Link } from 'react-router-dom'
-import Logo from '../Logo/Logo'
+import { Logo } from 'components'
 
 class App extends Component {
   static propTypes = {
