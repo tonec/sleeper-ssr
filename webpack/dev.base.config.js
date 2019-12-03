@@ -37,17 +37,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [
-            '@babel/react',
-            ['@babel/env', { targets: { browsers: ['last 2 versions'] } }]
-          ],
-          plugins: [
-            'react-hot-loader/babel',
-            '@babel/plugin-proposal-class-properties',
-          ]
-        }
+        exclude: /node_modules/
       }
     ]
   },
