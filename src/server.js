@@ -1,11 +1,12 @@
 import 'babel-polyfill'
 import express from 'express'
+import { renderToString } from 'react-dom/server'
 import { matchRoutes } from 'react-router-config'
 import { createMemoryHistory } from 'history'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
-import Html from 'helpers/Html'
+import render from 'helpers/render'
 import createStore from 'redux/store'
 import routes from './routes'
 
@@ -23,7 +24,7 @@ app.get('*', (req, res) => {
   console.log('req', req.url)
 
   trigger('fetch', components, locals).then(() => {
-    res.send(Html(req, store))
+    res.send(renderToString(render(req, store)))
   })
 })
 

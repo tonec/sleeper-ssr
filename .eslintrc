@@ -63,6 +63,7 @@
     "react/no-unescaped-entities": "off",
     "react/prefer-stateless-function": "off",
     "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/static-property-placement": ["error", "static public field"],
     "jsx-a11y/label-has-for": [
       "error",
