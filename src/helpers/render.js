@@ -7,6 +7,7 @@ import get from 'lodash/get'
 import Html from './Html'
 import getAssets from './getAssets'
 import routes from '../routes'
+import config from '../../config'
 
 export default (req, store) => {
   const bundle = get(getAssets(), 'main.js', null)
@@ -23,5 +24,5 @@ export default (req, store) => {
     </Provider>
   )
 
-  return Html(content, bundle, store)
+  return Html(content, bundle, store, config)
 }
