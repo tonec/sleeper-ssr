@@ -12,7 +12,7 @@ module.exports = {
       { property: 'og:card', content: 'summary' },
       { property: 'og:image:width', content: '200' },
       { property: 'og:image:height', content: '200' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'application-name', content: 'App title' },

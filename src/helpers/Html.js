@@ -3,7 +3,8 @@ import getHead from './getHead'
 
 export default (content, assets, store, config) => {
   return `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en-US">
       ${getHead(config.app, assets)}
       <body>
         <div id="content">${content}</div>
