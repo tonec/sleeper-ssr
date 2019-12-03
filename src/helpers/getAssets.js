@@ -5,7 +5,7 @@ export default () => {
   const assetsPath = path.resolve(__dirname, '../assets.json')
 
   if (!fs.existsSync(assetsPath)) {
-    return {}
+    return null
   }
 
   const assetsJSON = fs.readFileSync(assetsPath)

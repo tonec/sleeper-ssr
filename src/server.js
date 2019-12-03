@@ -1,6 +1,5 @@
 import 'babel-polyfill'
 import express from 'express'
-import { renderToString } from 'react-dom/server'
 import { matchRoutes } from 'react-router-config'
 import { createMemoryHistory } from 'history'
 import qhistory from 'qhistory'
@@ -24,7 +23,7 @@ app.get('*', (req, res) => {
   console.log('req', req.url)
 
   trigger('fetch', components, locals).then(() => {
-    res.send(renderToString(render(req, store)))
+    res.send(render(req, store))
   })
 })
 
