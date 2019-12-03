@@ -1,21 +1,20 @@
+import path from 'path'
 import React from 'react'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
-import Html from './Html'
-import getAssets from './getAssets'
+import { ChunkExtractor } from '@loadable/server'
+import serialize from 'serialize-javascript'
+import getHead from './getHead'
 import routes from '../routes'
 import config from '../../config'
 
 export default (req, store) => {
-  const assets = getAssets()
+  const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
+  const extractor = new ChunkExtractor({ statsFile })
 
-  if (!assets) {
-    console.log('No assets files found.')
-  }
-
-  const content = renderToString(
+  const jsx = extractor.collectChunks(
     <Provider store={store}>
       <StaticRouter location={req.originalUrl} context={{}}>
         {renderRoutes(routes)}
@@ -23,5 +22,21 @@ export default (req, store) => {
     </Provider>
   )
 
-  return Html(content, assets, store, config)
+  const content = renderToString(jsx)
+
+  return `
+    <!DOCTYPE html>
+    <html lang="en-US">
+      <head>
+        ${getHead(config.app)}
+        ${extractor.getLinkTags()}
+        ${extractor.getStyleTags()}
+      </head>
+      <body>
+        <div id="content">${content}</div>
+        <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
+        ${extractor.getScriptTags()}
+      </body>
+    </html>
+  `
 }

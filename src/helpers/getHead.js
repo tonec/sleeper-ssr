@@ -11,15 +11,11 @@ const generateMeta = meta => {
   }, '')
 }
 
-export default (config, assets) => {
+export default config => {
   return `
-    <head>
-      <title>${config.title}</title>
-      ${generateMeta(config.head.meta)}
-      <link rel="shortcut icon" href="/favicon.ico" />
-      <link rel="manifest" href="/manifest.json" />
-      ${assets.links}
-      ${assets.styles}
-    </head>
+    <title>${config.title}</title>
+    ${generateMeta(config.head.meta)}
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
   `
 }
