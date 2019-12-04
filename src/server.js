@@ -36,7 +36,6 @@ app.get('*', (req, res) => {
   const locals = { store }
 
   trigger('fetch', components, locals).then(() => {
-    res.set('content-type', 'text/html')
     res.send(render(req, store))
   })
 })

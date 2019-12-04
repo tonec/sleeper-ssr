@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { objectOf, any } from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Logo } from 'components'
+import loadable from '@loadable/component'
+
+const Logo = loadable(() => import('../Logo/Logo'))
 
 class App extends Component {
   static propTypes = {

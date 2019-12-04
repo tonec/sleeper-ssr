@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { array } from 'prop-types'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { provideHooks } from 'redial'
-import { fetchUsers } from 'redux/modules/user/actions'
 
 class Users extends Component {
   static propTypes = {
@@ -43,13 +40,4 @@ class Users extends Component {
 
 const mapState = ({ user }) => ({ users: user })
 
-export const hooks = {
-  fetch: ({ store }) => {
-    return store.dispatch(fetchUsers())
-  }
-}
-
-export default compose(
-  provideHooks(hooks),
-  connect(mapState)
-)(Users)
+export default connect(mapState)(Users)
