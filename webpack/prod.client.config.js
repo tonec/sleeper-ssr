@@ -2,19 +2,22 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const LoadablePlugin = require('@loadable/webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 const baseConfig = require('./dev.base.config')
-const paths = require('./paths')
+const config = require('../config')
+
+const { paths } = config
 
 module.exports = merge(baseConfig, {
   entry: {
     main: [
-      path.resolve(paths.ROOT_DIRECTORY, 'src/client.js')
+      path.resolve(paths.ROOT, 'src/client.js')
     ]
   },
   output: {
-    path: paths.DIST_DIRECTORY,
+    path: paths.DIST,
     filename: '[name]-[hash].js',
-    publicPath: paths.PUBLIC_PATH
+    publicPath: paths.PUBLIC
   },
   module: {
     rules: [
@@ -27,7 +30,7 @@ module.exports = merge(baseConfig, {
               limit: 8192,
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
-              publicPath: paths.PUBLIC_PATH
+              publicPath: paths.PUBLIC
             },
           },
         ],
@@ -40,6 +43,8 @@ module.exports = merge(baseConfig, {
       __SERVER__: false
     }),
 
-    new LoadablePlugin()
+    new LoadablePlugin(),
+
+    new WorkboxPlugin.GenerateSW()
   ]
 })

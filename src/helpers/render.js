@@ -28,7 +28,7 @@ export default (req, store) => {
     <!DOCTYPE html>
     <html lang="en-US">
       <head>
-        ${getHead(config.app)}
+        ${getHead(config)}
         ${extractor.getLinkTags()}
         ${extractor.getStyleTags()}
       </head>

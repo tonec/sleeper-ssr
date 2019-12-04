@@ -11,11 +11,23 @@ const generateMeta = meta => {
   }, '')
 }
 
-export default config => {
+export default ({ app, paths }) => {
   return `
-    <title>${config.title}</title>
-    ${generateMeta(config.head.meta)}
+    <title>${app.title}</title>
+    ${generateMeta(app.head.meta)}
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
+    <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('${paths.PUBLIC}/service-worker.js').then(registration => {
+          console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+        });
+      });
+    }
+    </script>
   `
 }

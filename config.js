@@ -1,9 +1,19 @@
-const appConfig = require('./config.app.js')
-const environment = require('./config.env.js')
+const path = require('path')
+const configApp = require('./config.app.js')
+
+require('dotenv').config()
+
+const ROOT_DIRECTORY = path.resolve(__dirname)
+const DIST_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'public/dist')
+const PUBLIC_PATH = `http://${process.env.HOST}:${+process.env.PORT}/dist/`
 
 module.exports = {
   ...{
-    app: appConfig
-  },
-  environment
+    app: configApp,
+    paths: {
+      ROOT: ROOT_DIRECTORY,
+      DIST: DIST_DIRECTORY,
+      PUBLIC: PUBLIC_PATH
+    }
+  }
 }
