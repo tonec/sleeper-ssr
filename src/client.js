@@ -21,8 +21,6 @@ const hydrate = () => {
     const components = branch.map(b => b.route.component)
     const locals = { store }
 
-    console.log('branch', branch)
-
     if (window.INITIAL_STATE) {
       delete window.INITIAL_STATE
     } else {

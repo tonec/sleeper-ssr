@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 const baseConfig = require('./dev.base.config')
 const paths = require('./paths')
 
@@ -37,6 +38,8 @@ module.exports = merge(baseConfig, {
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false
-    })
+    }),
+
+    new LoadablePlugin()
   ]
 })
