@@ -3,7 +3,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'production',
+
   context: path.resolve(__dirname, '..'),
+
   resolve: {
     modules: [
       'src',
@@ -11,7 +13,9 @@ module.exports = {
     ],
     extensions: ['.json', '.js']
   },
+
   devtool: 'inline-source-map',
+
   stats: {
     warningsFilter: warning => {
       let block = false
@@ -30,6 +34,7 @@ module.exports = {
       return block
     }
   },
+
   module: {
     rules: [
       {

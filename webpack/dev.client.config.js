@@ -13,11 +13,13 @@ module.exports = merge(baseConfig, {
       path.resolve(paths.ROOT_DIRECTORY, 'src/client.js')
     ]
   },
+
   output: {
     path: paths.DIST_DIRECTORY,
     filename: '[name]-[hash].js',
     publicPath: paths.PUBLIC_PATH
   },
+
   module: {
     rules: [
       {
@@ -36,11 +38,13 @@ module.exports = merge(baseConfig, {
       }
     ]
   },
+
   plugins: [
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false
     }),
+
     new LoadablePlugin()
   ]
 })

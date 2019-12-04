@@ -6,14 +6,18 @@ const paths = require('./paths')
 
 module.exports = merge(baseConfig, {
   target: 'node',
+
   node: {
     __dirname: false,
   },
+
   entry: './src/server.js',
+
   output: {
     filename: 'bundle.js',
     path: path.resolve(paths.ROOT_DIRECTORY, 'build')
   },
+
   module: {
     rules: [
       {
@@ -33,6 +37,7 @@ module.exports = merge(baseConfig, {
       }
     ]
   },
+
   plugins: [
     new webpack.DefinePlugin({
       __CLIENT__: false,
