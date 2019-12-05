@@ -13,6 +13,7 @@ import { trigger } from 'redial'
 import render from 'helpers/render'
 import createStore from 'redux/store'
 import routes from './routes'
+import config from '../config'
 
 const PUBLIC_PATH = path.resolve(__dirname, '../public')
 const FAVICON = path.join(PUBLIC_PATH, 'favicon.ico')
@@ -40,6 +41,6 @@ app.get('*', (req, res) => {
   })
 })
 
-app.listen(3000, () => {
-  console.log('Listening on port 3000')
+app.listen(config.PORT, () => {
+  console.log(`Listening on port ${config.PORT}`)
 })
