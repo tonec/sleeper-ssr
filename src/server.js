@@ -10,6 +10,7 @@ import { createMemoryHistory } from 'history'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { trigger } from 'redial'
+import PrettyError from 'pretty-error'
 import render from 'helpers/render'
 import createStore from 'redux/store'
 import routes from './routes'
@@ -20,6 +21,11 @@ const FAVICON = path.join(PUBLIC_PATH, 'favicon.ico')
 const MANIFEST = path.join(PUBLIC_PATH, 'manifest.json')
 
 const app = express()
+const pretty = new PrettyError()
+
+process.on('unhandledRejection', (reason, p) => {
+  console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason))
+})
 
 app.use(helmet())
   .use(cookieParser())

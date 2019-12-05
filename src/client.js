@@ -12,6 +12,10 @@ import { trigger } from 'redial'
 import createStore from 'redux/store'
 import routes from './routes'
 
+window.addEventListener('unhandledrejection', (err, promise) => {
+  console.log('Unhandled promise rejection: ', err, promise)
+})
+
 const history = qhistory(createBrowserHistory(), stringify, parse)
 const store = createStore(history)
 
