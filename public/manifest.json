@@ -1,6 +1,6 @@
 {
-  "short_name": "EventHive",
-  "name": "EventHive",
+  "short_name": "App",
+  "name": "App name",
   "icons": [
     {
       "src": "launcher-icon-2x.png",

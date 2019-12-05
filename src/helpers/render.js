@@ -6,11 +6,12 @@ import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import { ChunkExtractor } from '@loadable/server'
 import serialize from 'serialize-javascript'
-import getHead from './getHead'
 import routes from '../routes'
-import config from '../../config'
+import Html from './Html'
 
 export default (req, store) => {
+  if (!req) return Html({})
+
   const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
   const extractor = new ChunkExtractor({ statsFile })
 
@@ -23,20 +24,10 @@ export default (req, store) => {
   )
 
   const content = renderToString(jsx)
+  const links = extractor.getLinkTags()
+  const styles = extractor.getStyleTags()
+  const scripts = extractor.getScriptTags()
+  const initialState = serialize(store.getState())
 
-  return `
-    <!DOCTYPE html>
-    <html lang="en-US">
-      <head>
-        ${getHead(config)}
-        ${extractor.getLinkTags()}
-        ${extractor.getStyleTags()}
-      </head>
-      <body>
-        <div id="content">${content}</div>
-        <script>window.INITIAL_STATE = ${serialize(store.getState())}</script>
-        ${extractor.getScriptTags()}
-      </body>
-    </html>
-  `
+  return Html({ content, links, styles, scripts, initialState })
 }

@@ -1,3 +1,4 @@
+import registerSW from './registerSW'
 
 const generateMeta = meta => {
   return meta.reduce((acc, tag) => {
@@ -11,23 +12,12 @@ const generateMeta = meta => {
   }, '')
 }
 
-export default ({ app, paths }) => {
+export default ({ app }) => {
   return `
     <title>${app.title}</title>
     ${generateMeta(app.head.meta)}
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
-    <script>
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('${paths.PUBLIC}/service-worker.js').then(registration => {
-          console.log('SW registered: ', registration);
-        }).catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
-      });
-    }
-    </script>
+    ${process.env.NODE_ENV !== 'development' ? registerSW() : ''}
   `
 }

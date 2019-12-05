@@ -44,6 +44,8 @@ loadableReady(() => {
   hydrate()
 })
 
-module.hot.accept('./routes', () => {
-  hydrate()
-})
+if (process.env.NODE_ENV === 'development') {
+  module.hot.accept('./routes', () => {
+    hydrate()
+  })
+}

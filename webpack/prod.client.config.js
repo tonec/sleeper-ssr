@@ -8,6 +8,7 @@ const config = require('../config')
 
 const ROOT_DIRECTORY = path.resolve(__dirname, '../')
 const DIST_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'public/dist')
+const SRC_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'src')
 
 module.exports = merge(baseConfig, {
   entry: {
@@ -46,6 +47,13 @@ module.exports = merge(baseConfig, {
 
     new LoadablePlugin(),
 
-    new WorkboxPlugin.GenerateSW()
+    new WorkboxPlugin.InjectManifest({
+      swDest: '../service-worker.js',
+      swSrc: path.resolve(SRC_DIRECTORY, 'sw-template.js'),
+      include: ['/', /\.js$/, /\.css$/, /\.svg$/],
+      templatedURLs: {
+        '/': new Date().toString(),
+      }
+    }),
   ]
 })

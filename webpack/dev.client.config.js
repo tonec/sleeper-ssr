@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const LoadablePlugin = require('@loadable/webpack-plugin')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 const baseConfig = require('./dev.base.config')
 const config = require('../config')
 
@@ -50,8 +49,6 @@ module.exports = merge(baseConfig, {
     }),
 
     new LoadablePlugin(),
-
-    new WorkboxPlugin.GenerateSW(),
 
     new webpack.HotModuleReplacementPlugin()
   ]

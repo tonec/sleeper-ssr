@@ -29,6 +29,11 @@ app.use(helmet())
 
 app.use(express.static('public'))
 
+app.use('/app-shell', (req, res) => {
+  res.send(render())
+})
+
+
 app.get('*', (req, res) => {
   const history = qhistory(createMemoryHistory({ initialEntries: [req.originalUrl] }), stringify, parse)
   const store = createStore(history)
