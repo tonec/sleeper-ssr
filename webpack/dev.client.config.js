@@ -6,23 +6,22 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
 const baseConfig = require('./dev.base.config')
 const config = require('../config')
 
-const { paths } = config
-
-console.log('paths.PUBLIC', paths.PUBLIC)
+const ROOT_DIRECTORY = path.resolve(__dirname, '../')
+const DIST_DIRECTORY = path.resolve(ROOT_DIRECTORY, 'public/dist')
 
 module.exports = merge(baseConfig, {
   entry: {
     main: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
-      path.resolve(paths.ROOT, 'src/client.js')
+      path.resolve(ROOT_DIRECTORY, 'src/client.js')
     ]
   },
 
   output: {
-    path: paths.DIST,
+    path: DIST_DIRECTORY,
     filename: '[name]-[hash].js',
-    publicPath: paths.PUBLIC
+    publicPath: config.paths.PUBLIC
   },
 
   module: {
@@ -36,7 +35,7 @@ module.exports = merge(baseConfig, {
               limit: 8192,
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
-              publicPath: paths.PUBLIC
+              publicPath: config.paths.PUBLIC
             },
           },
         ],

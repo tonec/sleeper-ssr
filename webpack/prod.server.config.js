@@ -4,7 +4,7 @@ const merge = require('webpack-merge')
 const baseConfig = require('./dev.base.config.js')
 const config = require('../config')
 
-const { paths } = config
+const ROOT_DIRECTORY = path.resolve(__dirname, '../')
 
 module.exports = merge(baseConfig, {
   target: 'node',
@@ -17,7 +17,7 @@ module.exports = merge(baseConfig, {
 
   output: {
     filename: 'bundle.js',
-    path: path.resolve(paths.ROOT, 'build')
+    path: path.resolve(ROOT_DIRECTORY, 'build')
   },
 
   module: {
@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
               limit: 8192,
               name: '[name]-[hash].[ext]',
               useRelativePath: false,
-              publicPath: paths.PUBLIC,
+              publicPath: config.paths.PUBLIC,
               emitFile: false
             },
           },
