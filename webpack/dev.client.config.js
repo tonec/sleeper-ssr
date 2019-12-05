@@ -51,6 +51,8 @@ module.exports = merge(baseConfig, {
 
     new LoadablePlugin(),
 
-    new WorkboxPlugin.GenerateSW()
+    new WorkboxPlugin.GenerateSW(),
+
+    new webpack.HotModuleReplacementPlugin()
   ]
 })
