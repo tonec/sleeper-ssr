@@ -4,6 +4,7 @@ package-lock.json
 npm-debug.log
 build/
 public/dist/
+public/sw.js
 *.report.html
 coverage/
 webpack-assets.json

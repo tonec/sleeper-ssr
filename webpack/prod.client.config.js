@@ -48,7 +48,7 @@ module.exports = merge(baseConfig, {
     new LoadablePlugin(),
 
     new WorkboxPlugin.InjectManifest({
-      swDest: '../service-worker.js',
+      swDest: '../sw.js',
       swSrc: path.resolve(SRC_DIRECTORY, 'sw-template.js'),
       include: ['/', /\.js$/, /\.css$/, /\.svg$/],
       templatedURLs: {
