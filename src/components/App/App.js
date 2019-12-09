@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { objectOf, any } from 'prop-types'
+import { object } from 'prop-types'
 import { Link } from 'react-router-dom'
 import loadable from '@loadable/component'
 
@@ -7,12 +7,12 @@ const Logo = loadable(() => import('../Logo/Logo'))
 
 class App extends Component {
   static propTypes = {
-    location: objectOf(any).isRequired
+    location: object.isRequired
   }
 
   componentDidUpdate(prevProps) {
+    const { pathname: prevPathname } = prevProps.location
     const { location: { pathname } } = this.props
-    const { location: { pathname: prevPathname } } = prevProps
 
     if (pathname !== prevPathname) {
       window.scrollTo(0, 0)
@@ -33,7 +33,7 @@ class App extends Component {
           <li><Link to="/users">About</Link></li>
         </ul>
         <button type="button" onClick={this.handleClick}>
-          Click me
+        Click me
         </button>
       </div>
     )
