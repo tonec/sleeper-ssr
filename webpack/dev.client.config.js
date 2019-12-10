@@ -48,8 +48,6 @@ module.exports = merge(baseConfig, {
       __SERVER__: false
     }),
 
-    new LoadablePlugin(),
-
-    new webpack.HotModuleReplacementPlugin()
+    new LoadablePlugin()
   ]
 })
