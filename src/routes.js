@@ -1,7 +1,13 @@
-import App from 'components/App/App'
+import HomeLoadable from 'components/Home/HomeLoadable'
 import UsersLoadable from 'components/Users/UsersLoadable'
+import App from './App'
 
 export default [
-  { path: '/', exact: true, component: App },
-  { path: '/users', component: UsersLoadable }
+  {
+    component: App,
+    routes: [
+      { path: '/', exact: true, component: HomeLoadable },
+      { path: '/users', component: UsersLoadable }
+    ]
+  }
 ]

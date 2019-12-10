@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { array } from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 class Users extends Component {
   static propTypes = {
@@ -23,15 +22,7 @@ class Users extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/users">About</Link>
-          </li>
-        </ul>
-        <h1>Users list:</h1>
+        <h2>Users lists:</h2>
         <ul>{this.renderUsers()}</ul>
       </div>
     )

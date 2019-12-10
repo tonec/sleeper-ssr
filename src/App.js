@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { object } from 'prop-types'
+import { renderRoutes } from 'react-router-config'
 import { Link } from 'react-router-dom'
 import loadable from '@loadable/component'
 
-const Logo = loadable(() => import('../Logo/Logo'))
+const Logo = loadable(() => import('./components/Logo/Logo'))
 
 class App extends Component {
   static propTypes = {
-    location: object.isRequired
+    location: object.isRequired,
+    route: object.isRequired
   }
 
   componentDidUpdate(prevProps) {
@@ -24,6 +26,8 @@ class App extends Component {
   }
 
   render() {
+    const { route } = this.props
+
     return (
       <div>
         <Logo />
@@ -32,9 +36,7 @@ class App extends Component {
           <li><Link to="/">Home</Link></li>
           <li><Link to="/users">About</Link></li>
         </ul>
-        <button type="button" onClick={this.handleClick}>
-        Click me
-        </button>
+        {renderRoutes(route.routes)}
       </div>
     )
   }
