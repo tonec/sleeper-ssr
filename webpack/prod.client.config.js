@@ -16,11 +16,13 @@ module.exports = merge(baseConfig, {
       path.resolve(ROOT_DIRECTORY, 'src/client.js')
     ]
   },
+
   output: {
     path: DIST_DIRECTORY,
     filename: '[name]-[hash].js',
     publicPath: config.paths.PUBLIC
   },
+
   module: {
     rules: [
       {
@@ -39,6 +41,7 @@ module.exports = merge(baseConfig, {
       }
     ]
   },
+
   plugins: [
     new webpack.DefinePlugin({
       __CLIENT__: true,
