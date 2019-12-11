@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const config = require('../config')
 
 module.exports = {
   mode: 'development',
@@ -43,12 +45,39 @@ module.exports = {
         test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(css)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: config.paths.PUBLIC,
+              hmr: true
+            }
+          },
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]',
+        }
       }
     ]
   },
 
   plugins: [
     new CleanWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+
+    new webpack.HotModuleReplacementPlugin(),
+
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false
+    })
   ]
 }
