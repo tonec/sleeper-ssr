@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history'
 import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import { trigger } from 'redial'
+import { HelmetProvider } from 'react-helmet-async'
 import createStore from 'redux/store'
 import routes from './routes'
 
@@ -36,9 +37,11 @@ const hydrate = () => {
 
   ReactDOM.hydrate(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        {renderRoutes(routes)}
-      </ConnectedRouter>
+      <HelmetProvider>
+        <ConnectedRouter history={history}>
+          {renderRoutes(routes)}
+        </ConnectedRouter>
+      </HelmetProvider>
     </Provider>,
     document.getElementById('content')
   )

@@ -1,5 +1,5 @@
-import HomeLoadable from 'components/Home/HomeLoadable'
-import UsersLoadable from 'components/Users/UsersLoadable'
+import HomeLoadable from 'containers/Home/HomeLoadable'
+import UsersLoadable from 'containers/Users/UsersLoadable'
 import App from './App'
 
 export default [

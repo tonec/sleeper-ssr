@@ -1,12 +1,22 @@
-import getHead from './getHead'
-import config from '../../config'
+import registerSW from './registerSW'
 
-export default ({ content = '', links = '', styles = '', scripts = '', initialState = '' }) => {
+export default ({
+  content = '',
+  links = '',
+  styles = '',
+  scripts = '',
+  initialState = '',
+  helmet
+}) => {
   return `
     <!DOCTYPE html>
     <html lang="en-US">
       <head>
-        ${getHead(config)}
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        ${process.env.NODE_ENV !== 'development' ? registerSW() : ''}
         ${links}
         ${styles}
       </head>
