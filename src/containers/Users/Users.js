@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { array } from 'prop-types'
 import { connect } from 'react-redux'
+import { Meta } from 'components'
 
 class Users extends Component {
   static propTypes = {
@@ -22,6 +23,7 @@ class Users extends Component {
   render() {
     return (
       <div>
+        <Meta title="Users list page" />
         <h2>Users lists:</h2>
         <ul>{this.renderUsers()}</ul>
       </div>
