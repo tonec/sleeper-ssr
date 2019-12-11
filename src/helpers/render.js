@@ -10,7 +10,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import routes from '../routes'
 import Html from './Html'
 
-export default (req, store) => {
+export default (req, store, routerContext) => {
   if (!req) return Html({})
 
   const statsFile = path.resolve(__dirname, '../public/dist/loadable-stats.json')
@@ -20,7 +20,7 @@ export default (req, store) => {
   const jsx = extractor.collectChunks(
     <Provider store={store}>
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.originalUrl} context={{}}>
+        <StaticRouter location={req.originalUrl} context={routerContext}>
           {renderRoutes(routes)}
         </StaticRouter>
       </HelmetProvider>

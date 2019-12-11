@@ -46,9 +46,15 @@ app.get('*', (req, res) => {
   const branch = matchRoutes(routes, req.path)
   const components = branch.map(b => b.route.component)
   const locals = { store }
+  const routerContext = {}
+  const appContent = render(req, store, routerContext)
+
+  if (routerContext.notFound) {
+    res.status(404)
+  }
 
   trigger('fetch', components, locals).then(() => {
-    res.send(render(req, store))
+    res.send(appContent)
   })
 })
 
