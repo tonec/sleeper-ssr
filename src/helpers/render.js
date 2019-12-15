@@ -20,7 +20,7 @@ export default (req, store, routerContext) => {
   const jsx = extractor.collectChunks(
     <Provider store={store}>
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.originalUrl} context={routerContext}>
+        <StaticRouter location={req.originalUrl} context={{}}>
           {renderRoutes(routes)}
         </StaticRouter>
       </HelmetProvider>
@@ -33,6 +33,8 @@ export default (req, store, routerContext) => {
   const scripts = extractor.getScriptTags()
   const initialState = serialize(store.getState())
   const { helmet } = helmetContext
+
+  console.log('initialState', initialState)
 
   return Html({ content, links, styles, scripts, initialState, helmet })
 }

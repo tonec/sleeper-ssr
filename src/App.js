@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
 import { object } from 'prop-types'
 import { renderRoutes } from 'react-router-config'
-import { Link } from 'react-router-dom'
-import loadable from '@loadable/component'
-
-const Logo = loadable(() => import('./components/Logo/Logo'))
+import { Grommet } from 'grommet'
+import theme from 'theme'
 
 class App extends Component {
   static propTypes = {
     location: object.isRequired,
     route: object.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      ready: false
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ ready: true })
   }
 
   componentDidUpdate(prevProps) {
@@ -21,22 +31,15 @@ class App extends Component {
     }
   }
 
-  handleClick = () => {
-    console.log('clicked')
-  }
-
   render() {
     const { route } = this.props
+    const { ready } = this.state
 
     return (
-      <div>
-        <Logo />
-        <h1>App u likes</h1>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/users">About</Link></li>
-        </ul>
-        {renderRoutes(route.routes)}
+      <div style={{ visibility: ready ? 'visible' : 'hidden' }}>
+        <Grommet theme={theme}>
+          {renderRoutes(route.routes)}
+        </Grommet>
       </div>
     )
   }
