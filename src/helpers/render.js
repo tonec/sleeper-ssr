@@ -34,7 +34,5 @@ export default (req, store, routerContext) => {
   const initialState = serialize(store.getState())
   const { helmet } = helmetContext
 
-  console.log('initialState', initialState)
-
   return Html({ content, links, styles, scripts, initialState, helmet })
 }
