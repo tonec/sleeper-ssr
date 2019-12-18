@@ -1,16 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { AppBar, Button, Box, Heading } from 'components'
+import { AppBar, Heading } from 'components'
+import { Nav } from './style'
 
 const Header = () => (
   <AppBar position="static">
-    <Box direction="row">
-      <Heading level={3}>
+    <Nav>
+      <Heading level={3} size="medium">
         Sleep SSR
       </Heading>
-      <Link to="/"><Button>Home</Button></Link>
-      <Link to="/users"><Button>About</Button></Link>
-    </Box>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/users">About</Link></li>
+      </ul>
+    </Nav>
   </AppBar>
 )
 

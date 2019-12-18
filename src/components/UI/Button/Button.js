@@ -1,25 +1,13 @@
 import React from 'react'
-import { oneOfType, arrayOf, node, string, func } from 'prop-types'
 import { Button as BaseButton } from 'grommet'
 
-const propTypes = {
-  children: oneOfType([arrayOf(node), node]).isRequired,
-  variant: string,
-  color: string,
-  onClick: func
-}
+const propTypes = {}
 
-const defaultProps = {
-  variant: 'contained',
-  color: 'primary',
-  onClick: null
-}
+const defaultProps = {}
 
-const Button = ({ variant, color, children, onClick }) => {
+const Button = props => {
   return (
-    <BaseButton variant={variant} color={color} onClick={onClick}>
-      {children}
-    </BaseButton>
+    <BaseButton {...props} />
   )
 }
 

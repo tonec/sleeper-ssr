@@ -4,5 +4,6 @@ export default {
     family: 'Helvetica',
     size: '14px',
     height: '20px',
+    color: 'red'
   },
 }

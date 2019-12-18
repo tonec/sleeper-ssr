@@ -1,22 +1,16 @@
 import React from 'react'
-import { oneOfType, arrayOf, node, string, number } from 'prop-types'
+import { oneOfType, arrayOf, node } from 'prop-types'
 import { Heading as BaseHeading } from 'grommet'
 
 const propTypes = {
-  children: oneOfType([arrayOf(node), node]).isRequired,
-  level: number.isRequired,
-  margin: string,
-  color: string
+  children: oneOfType([arrayOf(node), node]).isRequired
 }
 
-const defaultProps = {
-  margin: null,
-  color: null
-}
+const defaultProps = {}
 
-const Heading = ({ level, margin, color, children }) => {
+const Heading = ({ children, ...rest }) => {
   return (
-    <BaseHeading level={level} margin={margin} color={color}>
+    <BaseHeading {...rest}>
       {children}
     </BaseHeading>
   )

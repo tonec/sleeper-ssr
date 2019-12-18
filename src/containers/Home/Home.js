@@ -7,9 +7,11 @@ const handleClick = () => {
 
 const Home = () => (
   <LayoutMain title="Home">
-    <Button onClick={handleClick}>
-    Click
-    </Button>
+    <Button
+      primary
+      label="Click"
+      onClick={handleClick}
+    />
   </LayoutMain>
 )
 
