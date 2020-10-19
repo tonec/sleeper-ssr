@@ -33,7 +33,7 @@ module.exports = {
       })
 
       return block
-    }
+    },
   },
 
   module: {
@@ -41,7 +41,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(css)$/,
@@ -50,20 +50,20 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
             options: {
               publicPath: config.paths.PUBLIC,
-              hmr: true
-            }
+              hmr: true,
+            },
           },
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
       {
         test: /\.(woff|woff2)$/,
         loader: 'file-loader',
         options: {
           name: 'fonts/[name].[ext]',
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
 
   plugins: [
@@ -74,7 +74,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
-      ignoreOrder: false
-    })
-  ]
+      ignoreOrder: false,
+    }),
+  ],
 }
