@@ -27,7 +27,7 @@ process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason))
 })
 
-app.use(helmet())
+app.use(helmet({ contentSecurityPolicy: false }))
   .use(cookieParser())
   .use(compression())
   .use(favicon(FAVICON))
