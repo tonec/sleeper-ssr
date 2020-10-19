@@ -1,48 +1,42 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { object } from 'prop-types'
 import { renderRoutes } from 'react-router-config'
-import { Grommet } from 'grommet'
+import { usePrevious } from 'hooks'
+import { Grommet, defaultProps } from 'grommet'
 import theme from 'theme'
 
-class App extends Component {
-  static propTypes = {
-    location: object.isRequired,
-    route: object.isRequired
-  }
+import './assets/stylesheets/global.css'
+import './assets/stylesheets/reset.css'
 
-  constructor(props) {
-    super(props)
+console.log('defaultProps', defaultProps)
 
-    this.state = {
-      ready: false
-    }
-  }
+const App = ({ location, route }) => {
+  const [ready, setReady] = useState(false)
 
-  componentDidMount() {
-    this.setState({ ready: true })
-  }
+  const prevPathname = usePrevious(location.pathname)
 
-  componentDidUpdate(prevProps) {
-    const { pathname: prevPathname } = prevProps.location
-    const { location: { pathname } } = this.props
+  useEffect(() => {
+    setReady(true)
+  }, [])
 
-    if (pathname !== prevPathname) {
+  useEffect(() => {
+    if (location.pathname !== prevPathname) {
       window.scrollTo(0, 0)
     }
-  }
+  }, [location.pathname])
 
-  render() {
-    const { route } = this.props
-    const { ready } = this.state
+  return (
+    <div className="app" style={{ visibility: ready ? 'visible' : 'hidden', height: '100%' }}>
+      <Grommet theme={theme} style={{ height: '100%' }}>
+        {renderRoutes(route.routes)}
+      </Grommet>
+    </div>
+  )
+}
 
-    return (
-      <div style={{ visibility: ready ? 'visible' : 'hidden' }}>
-        <Grommet theme={theme}>
-          {renderRoutes(route.routes)}
-        </Grommet>
-      </div>
-    )
-  }
+App.propTypes = {
+  location: object.isRequired,
+  route: object.isRequired
 }
 
 export default App

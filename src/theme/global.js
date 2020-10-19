@@ -6,4 +6,13 @@ export default {
     height: '20px',
     color: 'red'
   },
+
+  spacing: '22px',
+
+  input: {
+    padding: {
+      horizontal: 'small',
+      vertical: 'small'
+    }
+  }
 }
