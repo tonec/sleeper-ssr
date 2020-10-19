@@ -7,6 +7,7 @@ import { renderRoutes } from 'react-router-config'
 import { ChunkExtractor } from '@loadable/server'
 import serialize from 'serialize-javascript'
 import { HelmetProvider } from 'react-helmet-async'
+import { AsyncConnect } from 'components'
 import routes from '../routes'
 import Html from './Html'
 
@@ -20,8 +21,10 @@ export default (req, store, routerContext) => {
   const jsx = extractor.collectChunks(
     <Provider store={store}>
       <HelmetProvider context={helmetContext}>
-        <StaticRouter location={req.originalUrl} context={{}}>
-          {renderRoutes(routes)}
+        <StaticRouter location={req.originalUrl} context={routerContext}>
+          <AsyncConnect routes={routes} store={store}>
+            {renderRoutes(routes)}
+          </AsyncConnect>
         </StaticRouter>
       </HelmetProvider>
     </Provider>
