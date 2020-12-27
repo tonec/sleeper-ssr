@@ -41,14 +41,14 @@ Centered.propTypes = {
   width: PropTypes.number,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+    PropTypes.node
+  ]).isRequired
 }
 
 Centered.defaultProps = {
   align: 'middle',
   width: null,
-  className: '',
+  className: ''
 }
 
 export default Centered
